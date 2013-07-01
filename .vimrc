@@ -1,3 +1,15 @@
+"Vundle setup
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'Shougo/unite.vim'
+"Done with Vundle
 
 if $COLORTERM == 'gnome-terminal'
 	set t_Co=256
@@ -17,7 +29,7 @@ set showcmd " show partial commands in status line and
 endif
 
 if has('statusline')
-        set laststatus=2
+	set laststatus=2
 
 " Broken down into easily includeable segments
 set statusline=%<%f\ " Filename
@@ -75,6 +87,7 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 if has('gui_running')
 set lines=80 " 40 lines of text instead of 24,
 set columns=120
+set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
 endif
 
 
@@ -91,3 +104,27 @@ set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
 
 nmap <leader>gr :grep -Irin <C-r><C-w> *<CR>
+
+
+"==Powerline settings
+let g:Powerline_symbols = 'fancy'
+
+" Unite
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+	" Play nice with supertab
+	let b:SuperTabDisabled=1
+	" Enable navigation with control-j and control-k in insert mode
+	imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+	imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
