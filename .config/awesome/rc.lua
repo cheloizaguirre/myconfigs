@@ -42,7 +42,7 @@ beautiful.init(awful.util.getdir("config") .. "/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "terminator"
-editor = "vim"
+editor = "gvim"
 --editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -x " .. editor
 
@@ -216,9 +216,23 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+    awful.key({ modkey, "Shift"   }, "Left",   awful.tag.viewprev       ),
+    awful.key({ modkey, "Shift"   }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
+	awful.key({ modkey,           }, "Left",
+		function ()
+			for s=1, screen.count() do
+				awful.tag.viewprev()
+				awful.screen.focus_relative(1)
+			end
+		end),
+	awful.key({ modkey,           }, "Right",
+		function ()
+			for s=1, screen.count() do
+				awful.tag.viewnext()
+				awful.screen.focus_relative(1)
+			end
+		end),
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -236,7 +250,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
+    awful.key({ modkey,           }, "Down", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
+    awful.key({ modkey,           }, "Up", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey,           }, "Tab",
         function ()
