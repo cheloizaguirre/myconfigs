@@ -7,9 +7,11 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'Lokaltog/powerline'
 Bundle 'Shougo/unite.vim'
 "Done with Vundle
+
+set rtp+=~/.vim/bundle/powerline/bindings/vim
 
 if $COLORTERM == 'gnome-terminal'
 	set t_Co=256
@@ -87,7 +89,7 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 if has('gui_running')
 set lines=80 " 40 lines of text instead of 24,
 set columns=120
-set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
+set guifont=Sauce\ Code\ Powerline\ 12
 endif
 
 

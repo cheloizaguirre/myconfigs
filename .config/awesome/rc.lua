@@ -11,6 +11,8 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
+package.path = package.path .. ';/home/chelo/.vim/bundle/powerline/powerline/bindings/awesome/?.lua'
+require('powerline')
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -38,10 +40,10 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init(awful.util.getdir("config") .. "/themes/default/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/dk-grey/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "terminator"
+terminal = "urxvt"
 editor = "gvim"
 --editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -x " .. editor
@@ -195,6 +197,7 @@ for s = 1, screen.count() do
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
+	right_layout:add(powerline_widget)
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
@@ -452,4 +455,5 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
 -- }}}
