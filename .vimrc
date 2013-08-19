@@ -9,6 +9,9 @@ Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/powerline'
 Bundle 'Shougo/unite.vim'
+Bundle 'TwitVim'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdtree'
 "Done with Vundle
 
 set rtp+=~/.vim/bundle/powerline/bindings/vim
@@ -95,7 +98,7 @@ endif
 
 " twitvim stuff
 let twitvim_enable_python = 1
-let twitvim_browser_cmd = 'chromium'
+let twitvim_browser_cmd = 'firefox'
 
 "vimchat stuff
 let vimchat_libnotify = 0
@@ -130,3 +133,6 @@ function! s:unite_settings()
 	imap <buffer> <C-j>   <Plug>(unite_select_next_line)
 	imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
+
+"===NERDTree settings
+let NERDTreeWinPos="right"
