@@ -27,3 +27,4 @@ export nibuild_perforce_clientspec=mizaguir-barchwolf-perforce
 export nibuild_penguin_clientspec=mizaguir-barchwolf-penguin
 export nibuild_perforce_p4Port=cluperforce01.emea.corp.natinst.com:1999
 export nibuild_penguin_p4Port=cluperforce01.emea.corp.natinst.com:1888
+export MAKE_NUMBER_OF_JOBS=8
