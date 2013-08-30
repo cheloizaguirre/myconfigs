@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local scratch = require("scratch")
 
 package.path = package.path .. ';/home/chelo/.vim/bundle/powerline/powerline/bindings/awesome/?.lua'
 require('powerline')
@@ -44,9 +45,11 @@ beautiful.init(awful.util.getdir("config") .. "/themes/grey-new/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
-editor = "gvim"
+editor = "vim"
 --editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -x " .. editor
+
+-- scratch.pad.set(terminal, .80, .20, true)
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -299,6 +302,7 @@ globalkeys = awful.util.table.join(
 
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
+    awful.key({ modkey,           }, "c",      function () scratch.drop(terminal, "top", "center", .90, .40) end),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey,           }, "Return", function (c) c:swap(awful.client.getmaster()) end),

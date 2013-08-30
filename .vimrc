@@ -12,6 +12,7 @@ Bundle 'Shougo/unite.vim'
 Bundle 'TwitVim'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/nerdtree'
+"Bundle 'scrooloose/syntastic'
 "Done with Vundle
 
 set rtp+=~/.vim/bundle/powerline/bindings/vim
@@ -108,7 +109,8 @@ filetype plugin indent on
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
 
-nmap <leader>gr :grep -Irin <C-r><C-w> *<CR>
+nnoremap ,gr :grep -Irin <C-r><C-w> *<CR>
+nnoremap ,pe :!p4 edit %<CR>
 
 
 "==Powerline settings
@@ -136,3 +138,6 @@ endfunction
 
 "===NERDTree settings
 let NERDTreeWinPos="right"
+let NERDTreeShowBookmarks=1
+nnoremap <leader>b :NERDTreeToggle<CR>
+
