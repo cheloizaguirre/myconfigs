@@ -1,3 +1,7 @@
+" Vim needs a POSIX-Compliant shell. Fish is not.
+if $SHELL=~'bin/fish'
+set shell=/bin/bash
+endif
 "Vundle setup
 set nocompatible               " be iMproved
 filetype off                   " required!
@@ -7,19 +11,27 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Lokaltog/powerline'
+"Bundle 'Lokaltog/powerline'
 Bundle 'Shougo/unite.vim'
 Bundle 'TwitVim'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/nerdtree'
-"Bundle 'scrooloose/syntastic'
+Bundle 'bling/vim-airline'
+Bundle 'majutsushi/tagbar'
+Bundle 'scrooloose/syntastic'
+Bundle 'chriskempson/base16-vim'
 "Done with Vundle
 
-set rtp+=~/.vim/bundle/powerline/bindings/vim
+"set rtp+=~/.vim/bundle/powerline/bindings/vim
 
 if $COLORTERM == 'gnome-terminal'
 	set t_Co=256
 endif
+
+if $TERM == 'screen-256color'
+	set t_Co=256
+endif
+set background=dark
 colors xoria256
 set nu
 set incsearch
@@ -67,6 +79,7 @@ set autoindent " indent at the same level of the previous line
 set shiftwidth=4 " use indents of 4 spaces
 set tabstop=4 " an indentation every four columns
 set softtabstop=4 " let backspace delete indent
+set scrolloff=10 "number of lines to keep above/below cursor
 "set matchpairs+=<:> " match, to be used with %
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
 set colorcolumn=80
@@ -75,6 +88,7 @@ filetype plugin indent on
 
 nnoremap j gj
 nnoremap k gk
+nnoremap ^j ^w j
 
 """ Code folding options
 nmap <leader>f0 :set foldlevel=0<CR>
@@ -114,8 +128,10 @@ nnoremap ,pe :!p4 edit %<CR>
 
 
 "==Powerline settings
-let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'fancy'
 
+"==Airline settings
+let g:airline_powerline_fonts = 1
 " Unite
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
