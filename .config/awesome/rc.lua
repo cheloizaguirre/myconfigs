@@ -12,8 +12,8 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local scratch = require("scratch")
 
-package.path = package.path .. ';/home/chelo/.vim/bundle/powerline/powerline/bindings/awesome/?.lua'
-require('powerline')
+-- package.path = package.path .. ';/home/chelo/.vim/bundle/powerline/powerline/bindings/awesome/?.lua'
+-- require('powerline')
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)

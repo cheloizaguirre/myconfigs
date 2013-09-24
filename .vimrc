@@ -11,15 +11,17 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'Lokaltog/powerline'
 Bundle 'Shougo/unite.vim'
 Bundle 'TwitVim'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/nerdtree'
+Bundle 'Yggdroot/indentLine'
 Bundle 'bling/vim-airline'
-Bundle 'majutsushi/tagbar'
-Bundle 'scrooloose/syntastic'
 Bundle 'chriskempson/base16-vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-surround'
+Bundle 'mhinz/vim-startify'
+Bundle 'altercation/vim-colors-solarized'
 "Done with Vundle
 
 "set rtp+=~/.vim/bundle/powerline/bindings/vim
@@ -32,7 +34,7 @@ if $TERM == 'screen-256color'
 	set t_Co=256
 endif
 set background=dark
-colors xoria256
+colors solarized
 set nu
 set incsearch
 syntax on
@@ -84,6 +86,8 @@ set scrolloff=10 "number of lines to keep above/below cursor
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
 set colorcolumn=80
 "set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
+set listchars=eol:$,tab:\│\ ,trail:~,extends:>,precedes:<
+set cursorline
 filetype plugin indent on
 
 nnoremap j gj
@@ -107,7 +111,7 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 if has('gui_running')
 set lines=80 " 40 lines of text instead of 24,
 set columns=120
-set guifont=Sauce\ Code\ Powerline\ 12
+set guifont=Sauce\ Code\ Powerline\ 10
 endif
 
 
@@ -132,7 +136,8 @@ nnoremap ,pe :!p4 edit %<CR>
 
 "==Airline settings
 let g:airline_powerline_fonts = 1
-" Unite
+let g:airline#extensions#syntastic#enabled = 0
+"===Unite
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec<cr>
@@ -157,3 +162,24 @@ let NERDTreeWinPos="right"
 let NERDTreeShowBookmarks=1
 nnoremap <leader>b :NERDTreeToggle<CR>
 
+"===Startify settings 
+let g:startify_custom_header = map(split(system('fortune -o| cowsay'), '\n'), '" ". v:val') + ['','', ' Vim is charityware. Please read ":help uganda".', '', '']
+let g:startify_session_autoload = 1
+let g:startify_session_persistence = 1
+hi StartifyBracket ctermfg=240
+hi StartifyFooter  ctermfg=111
+hi StartifyHeader  ctermfg=203
+hi StartifyNumber  ctermfg=215
+hi StartifyPath    ctermfg=245
+hi StartifySlash   ctermfg=240
+autocmd VimEnter *
+			\ if !argc() |
+			\   Startify |
+			\   NERDTree |
+			\   execute "normal \<c-w>w" |
+			\ endif
+let NERDTreeHijackNetrw = 0
+
+"===indenLine settings
+let g:indentLine_char = '┆'
+let g:indentLine_color_term = 239
