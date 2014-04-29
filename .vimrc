@@ -86,7 +86,7 @@ set scrolloff=10 "number of lines to keep above/below cursor
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
 set colorcolumn=80
 "set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
-set listchars=eol:$,tab:\│\ ,trail:~,extends:>,precedes:<
+set listchars=eol:$,tab:\┆\ ,trail:~,extends:>,precedes:<
 set cursorline
 filetype plugin indent on
 
