@@ -1,3 +1,7 @@
+" Vim needs a POSIX-Compliant shell. Fish is not.
+if $SHELL=~'bin/fish'
+set shell=/bin/bash
+endif
 "Vundle setup
 set nocompatible               " be iMproved
 filetype off                   " required!
@@ -7,14 +11,30 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'Shougo/unite.vim'
+Bundle 'TwitVim'
+Bundle 'Yggdroot/indentLine'
+Bundle 'bling/vim-airline'
+Bundle 'chriskempson/base16-vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-surround'
+Bundle 'mhinz/vim-startify'
+Bundle 'altercation/vim-colors-solarized'
 "Done with Vundle
+
+"set rtp+=~/.vim/bundle/powerline/bindings/vim
 
 if $COLORTERM == 'gnome-terminal'
 	set t_Co=256
 endif
-colors xoria256
+
+if $TERM == 'screen-256color'
+	set t_Co=256
+endif
+set background=dark
+colors solarized
 set nu
 set incsearch
 syntax on
@@ -61,14 +81,18 @@ set autoindent " indent at the same level of the previous line
 set shiftwidth=4 " use indents of 4 spaces
 set tabstop=4 " an indentation every four columns
 set softtabstop=4 " let backspace delete indent
+set scrolloff=10 "number of lines to keep above/below cursor
 "set matchpairs+=<:> " match, to be used with %
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
 set colorcolumn=80
 "set comments=sl:/*,mb:*,elx:*/ " auto format comment blocks
+set listchars=eol:$,tab:\┆\ ,trail:~,extends:>,precedes:<
+set cursorline
 filetype plugin indent on
 
 nnoremap j gj
 nnoremap k gk
+nnoremap ^j ^w j
 
 """ Code folding options
 nmap <leader>f0 :set foldlevel=0<CR>
@@ -87,13 +111,13 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 if has('gui_running')
 set lines=80 " 40 lines of text instead of 24,
 set columns=120
-set guifont=Source\ Code\ Pro\ for\ Powerline\ 12
+set guifont=Sauce\ Code\ Powerline\ 10
 endif
 
 
 " twitvim stuff
 let twitvim_enable_python = 1
-let twitvim_browser_cmd = 'chromium'
+let twitvim_browser_cmd = 'firefox'
 
 "vimchat stuff
 let vimchat_libnotify = 0
@@ -103,13 +127,17 @@ filetype plugin indent on
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
 
-nmap <leader>gr :grep -Irin <C-r><C-w> *<CR>
+nnoremap ,gr :grep -Irin <C-r><C-w> *<CR>
+nnoremap ,pe :!p4 edit %<CR>
 
 
 "==Powerline settings
-let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'fancy'
 
-" Unite
+"==Airline settings
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#syntastic#enabled = 0
+"===Unite
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec<cr>
@@ -128,3 +156,30 @@ function! s:unite_settings()
 	imap <buffer> <C-j>   <Plug>(unite_select_next_line)
 	imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
+
+"===NERDTree settings
+let NERDTreeWinPos="right"
+let NERDTreeShowBookmarks=1
+nnoremap <leader>b :NERDTreeToggle<CR>
+
+"===Startify settings 
+let g:startify_custom_header = map(split(system('fortune -o| cowsay'), '\n'), '" ". v:val') + ['','', ' Vim is charityware. Please read ":help uganda".', '', '']
+let g:startify_session_autoload = 1
+let g:startify_session_persistence = 1
+hi StartifyBracket ctermfg=240
+hi StartifyFooter  ctermfg=111
+hi StartifyHeader  ctermfg=203
+hi StartifyNumber  ctermfg=215
+hi StartifyPath    ctermfg=245
+hi StartifySlash   ctermfg=240
+autocmd VimEnter *
+			\ if !argc() |
+			\   Startify |
+			\   NERDTree |
+			\   execute "normal \<c-w>w" |
+			\ endif
+let NERDTreeHijackNetrw = 0
+
+"===indenLine settings
+let g:indentLine_char = '┆'
+let g:indentLine_color_term = 239
