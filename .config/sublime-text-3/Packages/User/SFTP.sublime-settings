@@ -1,0 +1,5 @@
+{
+	"debug": 2
+	,"debug_log_file": "/home/chelo/share/temp/sublime_sftp_debug.txt"
+	,"diff_command": ["/usr/bin/meld", "%1$s", "%2$s"]
+}

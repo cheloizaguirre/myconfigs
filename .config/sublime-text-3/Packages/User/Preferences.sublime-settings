@@ -1,0 +1,27 @@
+{
+	"always_show_minimap_viewport": true,
+	"auto_complete_commit_on_tab": true,
+	"color_scheme": "Packages/Color Scheme - Default/Monokai Bright.tmTheme",
+	"draw_minimap_border": true,
+	"fade_fold_buttons": false,
+	"font_size": 11,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"FileDiffs",
+		"PlainTasks",
+		"Vintage"
+	],
+	"index_exclude_patterns":
+	[
+		"*.log",
+		"/home/chelo/sync/nepdep/iak/nissl/nisslinit/trunk/14.0/objects*",
+		"/home/chelo/share/car460258_ssl-crash*",
+		"/home/chelo/sync/nepdep/lvaddon/lvwsn/hostApiSource/trunk/14.0/dist*",
+		"/home/chelo/share/car460337_mem-leak/___cpptest_dsmemstats/objects*"
+	],
+	"soda_folder_icons": true,
+	"theme": "Freesia.sublime-theme",
+	"vintage_start_in_command_mode": true,
+	"vintageous_use_ctrl_keys": false
+}
