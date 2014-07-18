@@ -8,9 +8,9 @@
 	"highlight_line": true,
 	"ignored_packages":
 	[
-		"FileDiffs",
 		"PlainTasks",
-		"Vintage"
+		"Vintage",
+		"FileDiffs"
 	],
 	"index_exclude_patterns":
 	[
