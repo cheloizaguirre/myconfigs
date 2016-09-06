@@ -12,18 +12,18 @@ Plug 'gmarik/vundle'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/neomru.vim'
-Plug 'TwitVim'
+"Plug 'TwitVim'
 Plug 'Yggdroot/indentLine'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
 Plug 'bling/vim-bufferline'
 Plug 'chriskempson/base16-vim'
 Plug 'inside/vim-search-pulse'
-Plug 'klen/python-mode'
+"Plug 'klen/python-mode'
 Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-startify'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'nosami/Omnisharp'
+"Plug 'nosami/Omnisharp'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'shinokada/dragvisuals.vim'
@@ -101,13 +101,15 @@ set hlsearch " highlight search terms
 set winminheight=0 " windows can be 0 line high
 set ignorecase " case insensitive search
 set smartcase " case sensitive when uc present
+set smarttab " guess tabs vs spaces based on whether we're at the beggining of a line
+set expandtab " spaces, not tabs
 set wildmenu " show list instead of just completing
 set wildmode=list:longest,full " command <Tab> completion, list matches, then longest common part, then all.
 set wildignore+=*.sw?
 "set wildignore+=*.bak, *.?~,*.??~,(.???~,*.~
 set whichwrap=b,s,h,l,<,>,[,] " backspace and cursor keys wrap to
 set scrolljump=5 " lines to scroll when cursor leaves screen
-set scrolloff=3 " minimum lines to keep above and below cursor
+set scrolloff=8 " minimum lines to keep above and below cursor
 set foldenable " auto fold code
 
 set autoindent " indent at the same level of the previous line
@@ -608,4 +610,6 @@ elseif executable('ack')
 endif
 
 let g:junkfile#directory=expand($HOME."/.vim/tmp/junk")
+
+inoremap <leader>fn <C-R>=expand("%:t:r")<CR>
 
