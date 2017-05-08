@@ -19,7 +19,7 @@ Plug 'bling/vim-airline'
 Plug 'bling/vim-bufferline'
 Plug 'chriskempson/base16-vim'
 Plug 'inside/vim-search-pulse'
-"Plug 'klen/python-mode'
+Plug 'klen/python-mode'
 Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-startify'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -62,6 +62,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 if $TERM == 'screen-256color'
+    set term=xterm-256color
 	set t_Co=256
 endif
 set background=dark
@@ -613,3 +614,5 @@ let g:junkfile#directory=expand($HOME."/.vim/tmp/junk")
 
 inoremap <leader>fn <C-R>=expand("%:t:r")<CR>
 
+" force backgrounds to get redrawn. Most arcane incantation in history
+set t_ut=

@@ -1,8 +1,8 @@
 #IMAP: offlineimap
 set mbox_type=Maildir
-set folder = "~/.Maildir"
-source ~/.mutt/mailboxes
-set spoolfile = "+Inbox"
+set folder = "~/NI"
+source ~/Mutt/muttrc.mailboxes
+set spoolfile = "+INBOX"
 set record = "+Sent\ Items"
 set postponed = "+Drafts"
 set header_cache=~/.cache/mutt
@@ -25,21 +25,24 @@ set check_new = yes
 set timeout = 120
 source ~/.mutt/colors-solarized
 
-set query_command = "mutt_ldap.py '%s'"
 
+#set query_command = "mutt_ldap.py '%s'"
+
+#move to archive
+macro index,pager y  ":set confirmappend=no delete=yes\n<tag-prefix><save-message>=Archive<enter>:set confirmappend=yes delete=ask-yes\n"  "mark message as Archived"
 
 #Notmuch integration (mail indexer)
 macro index <F8> \
 		  "<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
 		  <shell-escape>notmuch-mutt -r --prompt search<enter>\
-		  <change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
+		  <change-folder-readonly>`echo /home/mizaguir/.cache/notmuch/mutt/results`<enter>\
 		  <enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
 		  "notmuch: search mail"
 
 macro index <F9> \
 		  "<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
 		  <pipe-message>notmuch-mutt -r thread<enter>\
-		  <change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
+		  <change-folder-readonly>`echo /home/mizaguir/.cache/notmuch/mutt/results`<enter>\
 		  <enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
 		  "notmuch: reconstruct thread"
 
@@ -55,6 +58,6 @@ macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
 macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
 # Ctrl-n, Ctrl-p to select next, previous folder.
 # Ctrl-o to open selected folder.
-bind index,pager \CP sidebar-prev
-bind index,pager \CN sidebar-next
-bind index,pager \CO sidebar-open
+#bind index,pager \CP sidebar-prev
+#bind index,pager \CN sidebar-next
+#bind index,pager \CO sidebar-open
